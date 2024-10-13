@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  
+
+  db:
+      image: mysql:latest
+      container_name: Mysql_DB
+      environment:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      volumes:
+        - db_data:/var/lib/mysql  
+      ports:
+        - "3306:3306"
+
+
+  backend:
+      build: .
+      container_name: backend
+      command: python manage.py runserver 0.0.0.0:8000 
+      volumes:
+        - ./core:/app
+      ports:
+        - "8000:8000"
+      env_file:
+        - .env
+      
+      depends_on:
+        - db
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_container
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "8080:80"
+  
+volumes:
+  db_data:  

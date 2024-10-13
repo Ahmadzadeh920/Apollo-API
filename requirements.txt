@@ -1,0 +1,9 @@
+# general  modules
+django==4.2
+tzdata
+setuptools
+python-decouple
+Pillow
+
+# database
+mysqlclient
