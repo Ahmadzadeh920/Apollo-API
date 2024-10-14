@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'CollectData'
+    'Authorization'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': config('MYSQL_DATABASE'),
         'USER': config('MYSQL_USER'),
         'PASSWORD': config('MYSQL_PASSWORD'),
-        'HOST': config('DB_HOST', 'db'),  # Use 'db' as default from .env
+        'HOST': config('DB_HOST', 'db_mysql'),  # Use 'db' as default from .env
         'PORT': config('DB_PORT', '3306'),  # Use '3306' as default from .env
         'OPTIONS': {
             'auth_plugin': 'mysql_native_password'
@@ -133,4 +133,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #define Auth User Models
-AUTH_USER_MODEL = 'CollectData.CustomUser'
+AUTH_USER_MODEL = 'Authorization.CustomUser'
