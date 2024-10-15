@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from decouple import config 
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Authorization'
+    'Authorization',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #define Auth User Models
 AUTH_USER_MODEL = 'Authorization.CustomUser'
+
+
+# define Apollo Variables
+APOLLO_CLIENT_ID = os.environ.get('APOLLO_CLIENT_ID')
+APOLLO_CLIENT_SECRET = os.environ.get('APOLLO_CLIENT_SECRET')
+APOLLO_REDIRECT_URI = os.environ.get('APOLLO_REDIRECT_URI')
+APOLLO_AUTH_URL = 'https://app.apollo.io/#/oauth/authorize/'
+APOLLO_TOKEN_URL = 'https://app.apollo.io/api/v1/oauth/token'
+

@@ -4,6 +4,25 @@ tzdata
 setuptools
 python-decouple
 Pillow
+requests 
+requests-oauthlib
 
 # database
 mysqlclient
+
+# rest API
+django-filter
+djangorestframework
+markdown
+
+
+# developments
+gunicorn>=20.0.4
+
+# security
+django-sslserver
+
+
+#authentication
+pyjwt
+
