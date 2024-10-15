@@ -22,12 +22,12 @@ def oauth_login(request):
     
      # Perform the GET request with parameters
      # Redirect with parameters
-    return redirect('https://app.apollo.io/#/oauth/authorize/?client_id=ljd2OQ5Cge1dBxmAR8YCwqGOROgng4Yr360ma2-wc8M&redirect_uri=https://ahmadzadeh920.github.io/&response_type=code#/oauth/authorize/')
+    return redirect(full_url)
     
    
 def oauth_callback(request):
     #code = request.GET.get('code')
-    code = 'K5RrkDKTqSazDEPxSh-niMlYZHsqzjthdskRt20W2l0'
+    code = 'LvtbyvK5z01hrNViH56Iq3E-RlYiLuGoS8xfRx-zNoY'
     token_url = settings.APOLLO_TOKEN_URL
     
     # Exchange code for access token
@@ -35,7 +35,7 @@ def oauth_callback(request):
         'client_id': settings.APOLLO_CLIENT_ID,
         'client_secret': settings.APOLLO_CLIENT_SECRET,
         'code': code,
-        'redirect_uri': 'https://ahmadzadeh920.github.io/',
+        'redirect_uri': settings.APOLLO_REDIRECT_URI,
         'grant_type': 'authorization_code',
     })
 
