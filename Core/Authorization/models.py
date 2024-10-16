@@ -1,86 +1,35 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+import json
 
-#from django.db import models
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    PermissionsMixin,
-    BaseUserManager,
-)
-from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+class HeaderRequest(models.Model):
+    url = models.URLField(max_length=200)  # URL field to store the request URL
+    cookies = models.TextField(blank=True, null=True)  # TextField to store cookies as JSON
+    headers = models.TextField(blank=True, null=True)  # TextField to store headers as JSON
+    payload = models.TextField(blank=True, null=True)  # TextField to store the payload as JSON
 
-# Create your models here.
+    def set_cookies(self, cookies_dict):
+        """Set cookies as a JSON string."""
+        self.cookies = json.dumps(cookies_dict)
 
+    def get_cookies(self):
+        """Get cookies as a dictionary."""
+        return json.loads(self.cookies) if self.cookies else {}
 
-class UserManager(BaseUserManager):
-    """
-    Custom user model manager where email is the unique identifiers
-    for authentication instead of usernames.
-    """
+    def set_headers(self, headers_dict):
+        """Set headers as a JSON string."""
+        self.headers = json.dumps(headers_dict)
 
-    def create_user(self, email, password, **extra_fields):
-        """
-        Create and save a User with the given email and password and extra data.
-        """
-        if not email:
-            raise ValueError(_("the Email must be set"))
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
-        user.set_password(password)
-        user.save()
-        return user
+    def get_headers(self):
+        """Get headers as a dictionary."""
+        return json.loads(self.headers) if self.headers else {}
 
-    def create_superuser(self, email, password, **extra_fields):
-        """
-        Create and save a SuperUser with the given email and password.
-        """
-        extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)
-        extra_fields.setdefault("is_active", True)
-        extra_fields.setdefault("is_verified", True)
+    def set_payload(self, payload_dict):
+        """Set payload as a JSON string."""
+        self.payload = json.dumps(payload_dict)
 
-        if extra_fields.get("is_staff") is not True:
-            raise ValueError(_("Superuser must have is_staff=True."))
-        if extra_fields.get("is_superuser") is not True:
-            raise ValueError(_("Superuser must have is_superuser=True."))
-        return self.create_user(email, password, **extra_fields)
-
-    
-
-class CustomUser(AbstractBaseUser, PermissionsMixin):
-    username = None
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateField(default=timezone.now)
-    updated_at = models.DateTimeField(default=timezone.now)
-    email = models.EmailField(_("email address"), unique=True)
-    is_verified = models.BooleanField(default=False)
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
-    objects = UserManager()
+    def get_payload(self):
+        """Get payload as a dictionary."""
+        return json.loads(self.payload) if self.payload else {}
 
     def __str__(self):
-        return self.email
-
-
-
-# class profile
-class Profile(models.Model):
-    user = models.OneToOneField(CustomUser,related_name="User", on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=250)
-    last_name = models.CharField(max_length=250)
-    linkedin_url = models.URLField(blank=True, null=True)
-    title = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return f"{self.user.email} Profile"
-    
-    @receiver(post_save, sender=CustomUser)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-
+        return f'API Request to {self.url}'

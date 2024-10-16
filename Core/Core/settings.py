@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Authorization',
-    'sslserver',
+  
 ]
 
 MIDDLEWARE = [
@@ -135,7 +135,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #define Auth User Models
-AUTH_USER_MODEL = 'Authorization.CustomUser'
+
 
 
 # define Apollo Variables

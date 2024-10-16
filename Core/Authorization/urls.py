@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import oauth_login, oauth_callback
+from .views import authenticate_and_fetch
 
 urlpatterns = [
-    path('auth/login/', oauth_login, name='oauth_login'),
-    path('auth/callback/', oauth_callback, name='oauth_callback'),
+    
+    path('', authenticate_and_fetch, name='authenticate_and_fetch'),
 ]
