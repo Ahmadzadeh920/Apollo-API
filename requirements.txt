@@ -15,9 +15,6 @@ mysqlclient
 gunicorn>=20.0.4
 
 
-#authentication
-pyjwt
-
 # CollectData web
 selenium
 webdriver-manager

@@ -1,6 +1,5 @@
 # views.py
 import json
-import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -38,7 +37,7 @@ def authenticate_and_fetch(request):
         capabilities = DesiredCapabilities.CHROME
         capabilities['goog:loggingPrefs'] = {'performance': 'ALL'}
 
-        driver = webdriver.Chrome(service=Service('path_to_chromedriver'), options=options, desired_capabilities=capabilities)
+        driver = webdriver.Chrome(service=Service('C:/chromedriver-win64/chromedriver.exe'), options=options, desired_capabilities=capabilities)
 
 
         # After successful login, wait for navigation to the desired page
