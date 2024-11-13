@@ -5,7 +5,6 @@
 <p align="center">
 <a href="https://www.python.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
 <a href="https://www.docker.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a>
-
 <a href="https://www.djangoproject.com/" target="_blank"> <img src="https://img.icons8.com/?size=100&id=qV-JzWYl9dzP&format=png&color=000000" alt="django" width="40" height="40"/> </a>
 <a href="https://www.mysql.com/" target="_blank"> <img src="https://img.icons8.com/?size=100&id=qGUfLiYi1bRN&format=png&color=000000" alt="Postgresql" width="40" height="40"/> </a>
 <a href="https://selenium-python.readthedocs.io/" target="_blank"> <img src="https://img.icons8.com/?size=100&id=gKrpNQQqVHmZ&format=png&color=000000" alt="websocket" width="40" height="40"/> </a>
@@ -15,7 +14,7 @@
 
 # Django Apollo.io API Integration
 
-This project is a Django application that integrates with Apollo.io to fetch data related to people using specified parameters with selenium library. The application is designed to follow best practices in setting up a Django project, Selenium and utilizes MySQL as the database backend.
+This project is a Django application that integrates with Apollo.io to fetch data related to people using specified parameters with selenium library. The application is designed to follow best practices in setting up a Django project, Selenium, webdriver, and utilizes MySQL as the database backend.
 
 ## Project Overview
 -  Set Up a Django Project
@@ -51,7 +50,7 @@ docker-compose exec backend sh -c sh -c "python manage.py migrate"
 3. **Login to External Service**: 
    - with the the library selenium, This application authenticates and logs in to Apollo.io using the provided credentials.
      - **Username**: ##
-     - **Password**: ##
+     - **Password**: #
 
 4. **Listen for Requests and Fetch Data**: 
    - The application listens for incoming requests and navigates to the Apollo People page.
