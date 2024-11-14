@@ -1,6 +1,6 @@
 
 <div align="center">
-<h1 align="center">Sample project (Listen for Requests and Fetch Data with selenium)</h1>
+<h1 align="center">Django Selenium Apollo (Listen for Requests and Fetch Data with selenium)</h1>
 </div>
 <p align="center">
 <a href="https://www.python.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
